@@ -2,8 +2,31 @@
 # Top-level pins; expand to a full transitive lock (like the other uAgents8 templates) with:
 #   uv pip compile requirements.in --python-version 3.12 --python-platform x86_64-manylinux_2_28 \
 #     --no-build --no-annotate --no-header -o requirements.txt
-fastapi==0.115.6
-uvicorn[standard]==0.34.0
+annotated-doc==0.0.7
+annotated-types==0.8.0
+anyio==4.16.0
+certifi==2026.11.20
+click==8.5.1
+distro==1.9.0
+fastapi==0.165.0
+h11==0.16.0
+httpcore==1.0.9
+httptools==0.9.0
+httpx==0.29.0
+idna==3.20
+jiter==0.19.0
 openai==1.59.3
+opentelemetry-api==1.45.2
 pydantic==2.10.4
+pydantic-core==2.27.2
 python-dotenv==1.0.1
+pyyaml==6.0.4
+sniffio==1.3.1
+starlette==1.10.0
+tqdm==4.70.1
+typing-extensions==4.16.0
+typing-inspection==0.4.5
+uvicorn[standard]==0.34.0
+uvloop==0.23.0
+watchfiles==1.3.0
+websockets==17.4
