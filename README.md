@@ -1,6 +1,13 @@
 # template-cometapi
 
+[![Deploy to uagents8](https://img.shields.io/badge/Deploy%20to-uagents8-6366f1?style=for-the-badge)](https://app.uagents8.com)
+
 A small CometAPI agent behind FastAPI, ready to deploy on uAgents8 and to point at your own models. CometAPI is an OpenAI-compatible gateway to 500+ models (OpenAI, Anthropic, Google, DeepSeek and more) behind one key and one base URL. One of several one-click framework and provider templates for uAgents8.
+
+> **Use it one click**: the deploy wizard's **Source** step has a **Templates** card next to
+> GitHub/GitLab/Bitbucket - pick **CometAPI starter** there and the wizard handles everything
+> below for you. The badge above also just opens the dashboard - from there, the same
+> Templates card is the fastest path.
 
 Use this as a GitHub template. Click **Use this template** above to create your own copy in your GitHub account - it never writes back to this repository. Or download the code and redeploy through Code Archive.
 
@@ -22,6 +29,8 @@ curl -X POST https://<your-agent>.uagents8.app/chat \
 ## Add your CometAPI key - or don't
 
 It needs no API key and no network to start. Set `COMETAPI_KEY` under **Environment Variables** (Sensitive on) to call CometAPI, and optionally `MODEL_NAME` to choose any of its 500+ models (default `gpt-4o-mini`). With no key set, `POST /chat` still answers - with a message that says exactly what to add - instead of refusing to start (see `uagents8.json`'s `env_vars`).
+
+Get a free CometAPI key at [cometapi.com](https://cometapi.com) (Partner promo / referral link: [COMETAPI_PROMO_LINK]).
 
 The place you change to make it your own is `respond()` in `main.py`.
 
