@@ -82,9 +82,9 @@ def test_works_without_any_api_key():
 
 def test_chat_model_override_changes_only_the_model_string(fake_key, monkeypatch):
     monkeypatch.setattr(main, "AsyncOpenAI", _FakeAsyncOpenAI)
-    body = client.post("/chat", json={"message": "hi", "model": "claude-3-5-haiku-latest"}).json()
-    assert body["model"] == "claude-3-5-haiku-latest"
-    assert body["reply"] == "echo(claude-3-5-haiku-latest): hi"
+    body = client.post("/chat", json={"message": "hi", "model": "claude-haiku-5-5"}).json()
+    assert body["model"] == "claude-haiku-5-5"
+    assert body["reply"] == "echo(claude-haiku-5-5): hi"
     assert body["mode"] == "model"
 
 
@@ -109,16 +109,16 @@ def test_switch_model_demo_runs_every_model_on_the_same_message(fake_key, monkey
     monkeypatch.setattr(main, "AsyncOpenAI", _FakeAsyncOpenAI)
     response = client.post(
         "/switch-model-demo",
-        json={"message": "2+2?", "models": ["gpt-4o-mini", "claude-3-5-haiku-latest", "deepseek-chat"]},
+        json={"message": "2+2?", "models": ["gpt-5-mini", "claude-haiku-5-5", "deepseek-chat"]},
     )
     assert response.status_code == 200
     results = response.json()
-    assert [r["model"] for r in results] == ["gpt-4o-mini", "claude-3-5-haiku-latest", "deepseek-chat"]
+    assert [r["model"] for r in results] == ["gpt-5-mini", "claude-haiku-5-5", "deepseek-chat"]
     assert all(r["reply"] == f"echo({r['model']}): 2+2?" for r in results)
 
 
 def test_switch_model_demo_without_a_key_still_answers_every_model():
-    response = client.post("/switch-model-demo", json={"message": "hi", "models": ["gpt-4o-mini", "deepseek-chat"]})
+    response = client.post("/switch-model-demo", json={"message": "hi", "models": ["gpt-5-mini", "deepseek-chat"]})
     assert response.status_code == 200
     assert all(r["mode"] == "stub" for r in response.json())
 

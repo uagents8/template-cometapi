@@ -12,7 +12,7 @@ POST /switch-model-demo     {"message": "...", "models": [...]} -> one result pe
                              a one-line change (just the `model` string), not a rewrite.
 
 Provider: set COMETAPI_KEY (Sensitive on) to call CometAPI; MODEL_NAME picks the default model
-(default gpt-4o-mini), overridable per-request via /chat's "model" field. With no key the
+(default gpt-5-mini), overridable per-request via /chat's "model" field. With no key the
 template still starts and answers - see NO_KEY_MESSAGE below, a deliberately better first
 impression than refusing to boot.
 
@@ -31,7 +31,7 @@ from pydantic import BaseModel, Field
 
 AGENT_NAME = "template-cometapi"
 COMETAPI_BASE_URL = "https://api.cometapi.com/v1"
-DEFAULT_MODEL = "gpt-4o-mini"
+DEFAULT_MODEL = "gpt-5-mini"
 MAX_COMPARE_MODELS = 5
 
 NO_KEY_MESSAGE = (

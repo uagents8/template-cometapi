@@ -18,7 +18,7 @@ A plain FastAPI service with one offline tool and one model call:
 | --- | --- |
 | `GET /` | A friendly status answer: `{"status": "ok", "agent": "template-cometapi"}`. |
 | `POST /chat` | Body `{"message": "...", "model": optional}`. Answers `{"message", "reply", "mode", "model"?}`: arithmetic runs plain Python (`mode: "tool"`), everything else goes to CometAPI (`mode: "model"` once a key is set, `"stub"` with no key, `"error"` on an upstream failure - never a crash). `model` overrides `MODEL_NAME` for that one request. |
-| `POST /switch-model-demo` | Body `{"message": "...", "models": ["gpt-4o-mini", "claude-3-5-haiku-latest", "deepseek-chat"]}` (1-5 models). Sends the **same message to every model, concurrently**, and returns one result per model - proof that switching providers through CometAPI is a one-line change (just the `model` string), not a rewrite. |
+| `POST /switch-model-demo` | Body `{"message": "...", "models": ["gpt-5-mini", "claude-haiku-5-5", "deepseek-chat"]}` (1-5 models). Sends the **same message to every model, concurrently**, and returns one result per model - proof that switching providers through CometAPI is a one-line change (just the `model` string), not a rewrite. |
 
 ```bash
 curl -X POST https://<your-agent>.uagents8.app/chat \
@@ -27,16 +27,16 @@ curl -X POST https://<your-agent>.uagents8.app/chat \
 
 curl -X POST https://<your-agent>.uagents8.app/switch-model-demo \
   -H 'Content-Type: application/json' \
-  -d '{"message": "Say hello in one word.", "models": ["gpt-4o-mini", "claude-3-5-haiku-latest", "deepseek-chat"]}'
+  -d '{"message": "Say hello in one word.", "models": ["gpt-5-mini", "claude-haiku-5-5", "deepseek-chat"]}'
 ```
 
 ## Add your CometAPI key - or don't
 
-It needs no API key and no network to start. Set `COMETAPI_KEY` under **Environment Variables** (Sensitive on) to call CometAPI, and optionally `MODEL_NAME` to choose any of its 500+ models (default `gpt-4o-mini`). With no key set, `POST /chat` still answers - with a message that says exactly what to add - instead of refusing to start (see `uagents8.json`'s `env_vars`).
+It needs no API key and no network to start. Set `COMETAPI_KEY` under **Environment Variables** (Sensitive on) to call CometAPI, and optionally `MODEL_NAME` to choose any of its 500+ models (default `gpt-5-mini`). With no key set, `POST /chat` still answers - with a message that says exactly what to add - instead of refusing to start (see `uagents8.json`'s `env_vars`).
 
 Get a free CometAPI key at [cometapi.com](https://cometapi.com).
 
-`MODEL_NAME`/the default `gpt-4o-mini` are examples, not a guarantee - CometAPI's catalog changes. Before relying on a model ID, list what's actually live: `python scripts/list_models.py` (calls the public, unauthenticated `GET /api/models` catalog endpoint).
+`MODEL_NAME`/the default `gpt-5-mini` are examples, not a guarantee - CometAPI's catalog changes. Before relying on a model ID, list what's actually live: `python scripts/list_models.py` (calls the public, unauthenticated `GET /api/models` catalog endpoint).
 
 The place you change to make it your own is `respond()` in `main.py`.
 
