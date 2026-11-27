@@ -1,0 +1,43 @@
+{
+  "$comment": "This manifest is the single source of truth for uAgents8's template catalog and the Configure step's env-var form. Keep this file and the platform's catalog in sync by hand - there is no shared-schema generation step yet.",
+  "slug": "cometapi",
+  "name": "CometAPI starter",
+  "framework": "CometAPI",
+  "description": "A CometAPI agent (500+ AI models) with a calculator tool and a model call, behind FastAPI.",
+  "language": "python",
+  "entrypoint": "main.py",
+  "recommended_size": "T",
+  "measured_peak_memory_mb": 80,
+  "measured_on": "2026-11-27",
+  "providers": ["cometapi"],
+  "env_vars": [
+    {
+      "key": "COMETAPI_KEY",
+      "label": "CometAPI API key",
+      "required": false,
+      "secret": true,
+      "provider": "cometapi",
+      "help_text": "Your CometAPI key, used as a Bearer token. The template still starts and answers without it. Get one from the CometAPI console."
+    },
+    {
+      "key": "MODEL_NAME",
+      "label": "Model name",
+      "required": false,
+      "secret": false,
+      "help_text": "Optional. Any CometAPI model ID, for example gpt-4o-mini (the default), gpt-5-mini, claude-3-5-haiku-latest or deepseek-chat."
+    },
+    {
+      "key": "COMETAPI_BASE_URL",
+      "label": "CometAPI base URL",
+      "required": false,
+      "secret": false,
+      "default": "https://api.cometapi.com/v1",
+      "help_text": "Optional override for the OpenAI-compatible base URL."
+    }
+  ],
+  "sample_request": {
+    "method": "POST",
+    "path": "/chat",
+    "body": { "message": "what is 2+3*4?" }
+  }
+}
