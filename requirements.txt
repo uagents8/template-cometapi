@@ -1,0 +1,9 @@
+# Runtime dependencies, every one pinned with == (the platform's dependency scan only reads == pins).
+# Top-level pins; expand to a full transitive lock (like the other uAgents8 templates) with:
+#   uv pip compile requirements.in --python-version 3.12 --python-platform x86_64-manylinux_2_28 \
+#     --no-build --no-annotate --no-header -o requirements.txt
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+openai==1.59.3
+pydantic==2.10.4
+python-dotenv==1.0.1
